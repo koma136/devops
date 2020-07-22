@@ -1,0 +1,25 @@
+version:  "3.7"
+# docker engine 18.03.0+
+
+# Сборка и запуск приложения. Сервисы базы данных, бэкенда и т.п. добавлять сюда
+services:
+  
+  # Приложение Nuxt.js
+  nuxt:
+    container_name: nuxt
+    build:
+        context: ./nuxt
+        dockerfile: Dockerfile
+    restart: always
+    expose:
+        - 3000
+    environment:
+        HOST: 0.0.0.0
+    command: 'npm run start'
+    networks:
+        - web
+    
+networks:
+  web:
+    external: false
+    name: web
